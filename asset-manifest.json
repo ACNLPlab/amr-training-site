@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/amr-training-site/static/css/main.f855e6bc.css",
-    "main.js": "/amr-training-site/static/js/main.b0842644.js",
+    "main.css": "/amr-training-site/static/css/main.9f578dbe.css",
+    "main.js": "/amr-training-site/static/js/main.0f28d7c8.js",
     "static/js/453.08abedfb.chunk.js": "/amr-training-site/static/js/453.08abedfb.chunk.js",
-    "static/media/logo.svg": "/amr-training-site/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/propbank.png": "/amr-training-site/static/media/propbank.429691031632f6e07b08.png",
+    "static/media/buygraph.png": "/amr-training-site/static/media/buygraph.1a3013a0d386b51ac410.png",
+    "static/media/plangraph.png": "/amr-training-site/static/media/plangraph.c8840a225d9816aa772d.png",
     "index.html": "/amr-training-site/index.html",
-    "main.f855e6bc.css.map": "/amr-training-site/static/css/main.f855e6bc.css.map",
-    "main.b0842644.js.map": "/amr-training-site/static/js/main.b0842644.js.map",
+    "main.9f578dbe.css.map": "/amr-training-site/static/css/main.9f578dbe.css.map",
+    "main.0f28d7c8.js.map": "/amr-training-site/static/js/main.0f28d7c8.js.map",
     "453.08abedfb.chunk.js.map": "/amr-training-site/static/js/453.08abedfb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.b0842644.js"
+    "static/css/main.9f578dbe.css",
+    "static/js/main.0f28d7c8.js"
   ]
 }

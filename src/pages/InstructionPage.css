@@ -1,0 +1,103 @@
+.instruction-container {
+  background: #fff;
+  color: #2d3748;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.title-block {
+    background-color: rgb(184, 222, 255);
+    height: 50px;
+    width: 40 px;
+    text-align: center;
+    font-size: large;
+}
+
+.minitext {
+  font-size: 0.95rem;
+  color: #718096;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.subheaders {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+.paragraphs {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.code-block {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  margin: 1rem 0;
+  white-space: pre-wrap;
+  font-family: 'Fira Mono', 'Consolas', monospace;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.section{
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background-color: #f7fafc;
+}
+
+.subsection-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #2b6cb0;
+}
+
+.custom-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.example-block {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.example-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: #4a5568;
+}
+
+.list-disc {
+  margin-left: 1.5rem;
+}

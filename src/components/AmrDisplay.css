@@ -1,0 +1,51 @@
+.amr-container {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+/* 
+.amr-row {
+    display: flex;
+    align-items: stretch;
+    line-height: 1.6;
+} */
+
+.amr-row {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    align-items: stretch;
+}
+
+.amr-row.with-line {
+    border-bottom: 1px solid #eee;
+}
+
+.amr-container .amr-row:last-child {
+    border-bottom: none;
+}
+
+.amr-row .amr-graph {
+    /* width: 45%; */
+    /* width: 400px; */
+    /* width: 350px; */
+    /* flex-shrink: 0; */
+    padding: 8px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    /* background-color: #f9f9f9; */
+    white-space: pre;
+    font-size: 14px;
+    
+
+}
+
+.amr-row .amr-translation {
+    font-style: italic;
+    /* flex: 1; */
+    padding: 8px 12px;
+    border-left: 1px solid #eee;
+    font-size: 14px;
+
+}
+
+/* maybe get rid of middle vertical line which is border-left*/

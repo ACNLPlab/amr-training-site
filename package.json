@@ -1,7 +1,7 @@
 {
   "name": "amr-trainer-web",
   "version": "0.1.0",
-  "homepage": "https://ACNLPlab.github.io/amr-training-site/home",
+  "homepage": "https://ACNLPlab.github.io/amr-training-site",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",

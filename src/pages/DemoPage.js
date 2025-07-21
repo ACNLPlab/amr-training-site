@@ -54,6 +54,8 @@ const DemoPage = () => {
         setUserInput(event.target.value);
     };
 
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwio8ROCRg2MySVTppL4YQt_D39f_5DNoQ-zREDhxneD-Tqzjw4caif-QMog_W4q2so/exec';
+
     // save user input to file
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -61,7 +63,7 @@ const DemoPage = () => {
         setSaveStatus('Saving...');
 
         try{
-            const response = await fetch('http://localhost:3001/api/save', {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbwio8ROCRg2MySVTppL4YQt_D39f_5DNoQ-zREDhxneD-Tqzjw4caif-QMog_W4q2so/exec', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',

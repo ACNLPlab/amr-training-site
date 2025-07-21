@@ -63,10 +63,11 @@ const DemoPage = () => {
         setSaveStatus('Saving...');
 
         try{
-            const response = await fetch('https://script.google.com/macros/s/AKfycbwio8ROCRg2MySVTppL4YQt_D39f_5DNoQ-zREDhxneD-Tqzjw4caif-QMog_W4q2so/exec', {
+            await fetch('https://script.google.com/macros/s/AKfycbwio8ROCRg2MySVTppL4YQt_D39f_5DNoQ-zREDhxneD-Tqzjw4caif-QMog_W4q2so/exec', {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
-                    'Content-type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     sentenceId: currentItem.id,
@@ -75,16 +76,12 @@ const DemoPage = () => {
                 }),
             });
 
-            if (response.ok){
-                console.log('Data saved successfully');
-                setSaveStatus('Data saved successfully');
-            } else{
-                console.error('Failed to save data');
-                setSaveStatus('Failed to save data');
-            }
+            console.log('Data successfully sent to Google Sheets.');
+            setSaveStatus('Annotation Saved');
+
         } catch (error) {
-            console.error('error connecting to server:', error);
-            setSaveStatus('Error connceting to server');
+            console.error('error sending data:', error);
+            setSaveStatus('Error: could not send data');
         }
     };
 

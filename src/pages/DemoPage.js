@@ -54,7 +54,7 @@ const DemoPage = () => {
         setUserInput(event.target.value);
     };
 
-    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwio8ROCRg2MySVTppL4YQt_D39f_5DNoQ-zREDhxneD-Tqzjw4caif-QMog_W4q2so/exec';
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwg8veS9l98N9YU3lNf5eHWIJlYXV0XGslC9qBN6drHDy0unK7Jts1R7adFGN-aMFFU/exec';
 
     // save user input to file
     const handleSubmit = async (event) => {
@@ -63,7 +63,7 @@ const DemoPage = () => {
         setSaveStatus('Saving...');
 
         try{
-            await fetch('https://script.google.com/macros/s/AKfycbwio8ROCRg2MySVTppL4YQt_D39f_5DNoQ-zREDhxneD-Tqzjw4caif-QMog_W4q2so/exec', {
+            await fetch(GOOGLE_APP_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
@@ -80,8 +80,8 @@ const DemoPage = () => {
             setSaveStatus('Annotation Saved');
 
         } catch (error) {
-            console.error('error sending data:', error);
-            setSaveStatus('Error: could not send data');
+            console.error('error connecting to server:', error);
+            setSaveStatus('error connecting to server:');
         }
     };
 
@@ -174,7 +174,7 @@ const DemoPage = () => {
                         placeholder="Type your AMR annotation here..."
                         readOnly={isSubmitted}
                     />
-                        <button className="submit-button" onClick={handleSubmit}>
+                        <button type="submit" className="submit-button">
                             Submit
                         </button>
                         {isSubmitted && saveStatus && <p className='save-status'>{saveStatus}</p>}

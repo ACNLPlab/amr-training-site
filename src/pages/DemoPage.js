@@ -3,6 +3,7 @@ import './DemoPage.css';
 import { amrData } from '../components/amrData';
 import AmrDisplay from '../components/AmrDisplay';
 import AmrDiffViewer from '../components/AmrDiffViewer';
+// import { response } from 'express';
 
 // helper function to parse and format text
 const FormattedExplanation = ({ text }) => {
@@ -33,6 +34,10 @@ const DemoPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0); 
     // user input
     const [userInput, setUserInput] = useState('');
+
+    // add user input to txt file
+    
+
     // check for user input submission
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -40,6 +45,7 @@ const DemoPage = () => {
 
     // const [isSubmittedInput, setIsSubmittedInput] = useState(false);
 
+    const [saveStatus, setSaveStatus] = useState('');
     
 
     const currentItem = amrData[currentIndex];
@@ -48,19 +54,50 @@ const DemoPage = () => {
         setUserInput(event.target.value);
     };
 
-    const handleSubmit = () => {
+    // save user input to file
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         setIsSubmitted(true);
+        setSaveStatus('Saving...');
+
+        try{
+            const response = await fetch('http://localhost:3001/api/save', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    sentenceId: currentItem.id,
+                    sentence: currentItem.sentence,
+                    userInput: userInput
+                }),
+            });
+
+            if (response.ok){
+                console.log('Data saved successfully');
+                setSaveStatus('Data saved successfully');
+            } else{
+                console.error('Failed to save data');
+                setSaveStatus('Failed to save data');
+            }
+        } catch (error) {
+            console.error('error connecting to server:', error);
+            setSaveStatus('Error connceting to server');
+        }
     };
+
 
     const handleRetry = () => {
         setPrevAttempt(userInput);
         setIsSubmitted(false);
+        setSaveStatus('');
     }
 
     const resetNewSentence = () => {
         setIsSubmitted(false);
         setUserInput('');
         setPrevAttempt(null);
+        setSaveStatus('');
     }
 
     const handleNext = () => {
@@ -85,7 +122,11 @@ const DemoPage = () => {
         <div className="demo-page-container">
             <h1>AMR Annotation Practice</h1>
             <p>Sentences and gold annotations are referenced from the AMR 3.0 dataset. Go to the About page to learn more.
-                Refer to the AMR guidelines and PropBank framesets to complete your annotations. 
+                Refer to the <a href="https://github.com/amrisi/amr-guidelines/blob/master/amr.md" target="_blank" rel="noopener noreferrer">
+                AMR guidelines
+            </a> and <a href="https://propbank.github.io/v3.4.0/frames/" target="_blank" rel="noopener noreferrer">
+                PropBank framesets
+            </a> to complete your annotations. 
             </p>
             <p>Differences in indentation and variable names (concept labels) do not count as errors.</p>
             <p></p>
@@ -126,16 +167,20 @@ const DemoPage = () => {
 
                 <div className="demo-column input-column">
                     <h2>Your Annotation</h2>
-                    <textarea
+                    <form onSubmit={handleSubmit}>
+                        <textarea
                         className="amr-textarea"
                         value={userInput}
                         onChange={handleInputChange}
                         placeholder="Type your AMR annotation here..."
                         readOnly={isSubmitted}
                     />
-                    <button className="submit-button" onClick={handleSubmit}>
-                        Submit
-                    </button>
+                        <button className="submit-button" onClick={handleSubmit}>
+                            Submit
+                        </button>
+                        {isSubmitted && saveStatus && <p className='save-status'>{saveStatus}</p>}
+                    </form>
+
                     
                     {isSubmitted && (
                         <button className="retry-button" onClick={handleRetry}>
@@ -152,8 +197,6 @@ const DemoPage = () => {
                         <>
                             <pre className="answer-display">{currentItem.goldAMR}</pre>
                             <p className="source">{currentItem.source}</p>
-                            {/* <p className="amr-id">{currentItem.id}</p>
-                            <p className="amr-filename">{currentItem.filename}</p> */}
                             <p className="amr-explanation-heading">Explanation:</p>
                             <FormattedExplanation text={currentItem.explanation} />
                         </>

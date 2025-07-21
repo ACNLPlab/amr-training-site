@@ -1,6 +1,6 @@
 
 .demo-page-container {
-    padding: 2rem;
+    padding: 5px;
     font-family: sans-serif;
     max-width: 1400px;
     margin: 0 auto;
@@ -65,9 +65,10 @@
     white-space: pre-wrap;
     word-break: break-all;
     background-color: #e9ecef;
-    padding: 1rem;
+    padding: 7px;
     border-radius: 4px;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
 }
 
 .source {
@@ -119,7 +120,7 @@
     background-color: #6c757d;
     color: white;
     border: none;
-    border-radius: 50%; /* circular button */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     font-size: 1.5rem;
@@ -148,7 +149,6 @@
     color: #495057;
 }
 
-/* full width section, no columns */
 .full-width-content {
     margin-top: 2rem;
 }

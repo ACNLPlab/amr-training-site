@@ -10,7 +10,7 @@ const HomePage = () => {
             how AMR works, then go to the Demo page to practice writing 
             your own annotations.</h2>
             
-        <p>Insert interactive mini AMR:</p>
+        {/* <p>Insert interactive mini AMR:</p> */}
     </div>
   );
 };

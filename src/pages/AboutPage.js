@@ -23,7 +23,7 @@ const AboutPage = () => {
                 Link to AMR 3.0 dataset
             </a>
             <p></p>
-            <a href="https://github.com/ACNLPlab/amr-training-website" target="_blank">
+            <a href="https://github.com/ACNLPlab/amr-training-site/tree/master" target="_blank">
                 Link to GitHub for this website
             </a>
     </div>

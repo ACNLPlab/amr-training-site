@@ -1,64 +1,72 @@
-
-.amr-diff-viewer {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #bdc3c7;
+  .amr-diff-viewer {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 1px solid #ccc;
+    padding: 15px;
     border-radius: 8px;
-    background-color: #ffffff;
-  }
-  .amr-diff-viewer h3 {
-    margin-top: 0;
-    border-bottom: 1px solid #ecf0f1;
-    padding-bottom: 10px;
-    color: #2c3e50;
-  }
-  .diff-legend {
-    font-size: 0.9em;
+    background-color: #f9f9f9;
+}
+
+.diff-legend {
     margin-bottom: 15px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .legend-item {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.legend-item {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-  }
-  .legend-item .box {
+    margin-right: 20px;
+}
+
+.legend-item .box {
     width: 14px;
     height: 14px;
-    border-radius: 3px;
-  }
-  .legend-item .box.removed {
-    background-color: #fadbd8;
-    border: 1px solid #f1948a;
-  }
-  .legend-item .box.added {
-    background-color: #d6eaf8;
-    border: 1px solid #85c1e9;
-  }
-  .diff-output-pre {
+    margin-right: 8px;
+    border: 1px solid #555;
+}
+
+.legend-item .removed {
+    background-color: #ffdce0;
+}
+
+.legend-item .added {
+    background-color: #d4ecff;
+}
+
+.diff-output-pre {
     white-space: pre-wrap;
     word-wrap: break-word;
-    background-color: #f8f9f9;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #e8e8e8;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .diff-removed {
-    color: #c0392b;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.diff-common {
+    color: #333;
+}
+
+.diff-removed {
+    background-color: #ffdce0;
+    color: #c00;
+    text-decoration: line-through;
     font-weight: bold;
-    background-color: #fadbd8;
-  }
-  .diff-added {
-    color: #2980b9;
+}
+
+.diff-added {
+    background-color: #d4ecff;
+    color: #005f99;
     font-style: italic;
-    background-color: #d6eaf8;
-  }
-  .diff-common {
-    color: #555;
-    background-color: transparent;
-  }
+    font-weight: bold;
+}
+
+.syntax-error {
+    color: #7f2121;
+    font-weight: bold;
+}
+
+.diff-interpretation-note {
+    text-align: left;
+}

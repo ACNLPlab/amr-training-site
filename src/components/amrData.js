@@ -57,6 +57,8 @@
             { id: 6, indentation: 2, amr: ':ARG1-of (f / fly-01)))', sentence: 'Smoke and cloud chase the wave that flies' }
         ],
         source: "Source: ::id bolt12_6455_6562.19 (amr-release-3.0-amrs-test-bolt.txt)",
+        id: "::id bolt12_6455_6562.19"
+
     },
     {
         order: 4,
@@ -69,6 +71,7 @@
             { id: 2, indentation: 1, amr: ':domain (m / meet-03))', sentence: 'Meeting is fruitful' }
         ],
         source: "Source: ::id PROXY_AFP_ENG_20020517_0035.13 (amr-release-3.0-amrs-proxy.txt)",
+        id: "::id PROXY_AFP_ENG_20020517_0035.13"
     },
     {
         order: 5,
@@ -91,6 +94,7 @@
             { id: 7, indentation: 1, amr: ':polarity -)', sentence: 'I do not desire to live in any city' }
         ],
         source: "Source: ::id wb.eng_0003.87 (amr-release-3.0-amrs-test-consensus.txt)",
+        id: "::id wb.eng_0003.87"
     },
     { 
         order: 6, 
@@ -105,6 +109,7 @@
             { id: 4, indentation: 2, amr: ':ARG0 (s / she)))', sentence: 'Her performance is 303.00 points' }
         ],
         source: "Source: ::id nw.chtb_0325.6 (amr-release-3.0-amrs-test-xinhua.txt)",
+        id: "::id nw.chtb_0325.6"
     },
     { 
         order: 7, 
@@ -119,6 +124,7 @@
             { id: 3, indentation: 2, amr: ':ARG0 (a / amr-unknown)))', sentence: 'Why the bodyguards?' }
         ],
         source: "Source: ::id wb.eng_0009.13 (amr-release-3.0-amrs-wb.txt)",
+        id: "::id wb.eng_0009.13"
     },
     { 
         order: 8, 
@@ -137,6 +143,7 @@
             { id: 5, indentation: 1, amr: ':ARG1 (i / i))', sentence: 'The only thing that surprises me is how rapid this is' }
         ], 
         source: "Source: ::id wb.eng_0003.18 (amr-release-3.0-amrs-test-consensus.txt)",
+        id: "::id wb.eng_0003.18"
     },
     { 
         order: 9, 
@@ -151,6 +158,7 @@
             { id: 3, indentation: 1, amr: ':mode imperative)', sentence: 'Come on folks!' }
         ],
         source: "Source: ::id wb.eng_0003.54 (amr-release-3.0-amrs-test-consensus.txt)",
+        id: "::id wb.eng_0003.54"
     },
     { 
         order: 10, 
@@ -172,7 +180,8 @@
             { id: 6, indentation: 3, amr: ':mod (i / international)))', sentence: 'They lack experience in international competitions' },
             { id: 7, indentation: 1, amr: ':time (s / still))', sentence: 'They still lack experience in international competitions' }
         ],
-        source: "Source: ::id nw.chtb_0324.13 (amr-release-3.0-amrs-test-xinhua.txt)"
+        source: "Source: ::id nw.chtb_0324.13 (amr-release-3.0-amrs-test-xinhua.txt)",
+        id: "::id nw.chtb_0324.13"
     },
     { 
         order: 11, 
@@ -190,8 +199,9 @@
             { id: 5, indentation: 3, amr: ':wiki "Gulf_Coast_of_the_United_States"', sentence: 'To help survivors in the Gulf Coast of the United States' },
             { id: 6, indentation: 3, amr: ':name (n / name :op1 "Gulf"))))', sentence: 'To help survivors in the Gulf' }
         ],
-        source: "Source: ::id ENG_DF_000170_20050903_C00020J0V_0001.2 (amr-release-3.0-amrs-test-lorelei.txt)"
-        },
+        source: "Source: ::id ENG_DF_000170_20050903_C00020J0V_0001.2 (amr-release-3.0-amrs-test-lorelei.txt)",
+        id: "::id ENG_DF_000170_20050903_C00020J0V_0001.2"    
+    },
     { 
         order: 12, 
         sentence: "The policy is a matter of national sovereignty and security.", 
@@ -212,7 +222,8 @@
             { id: 6, indentation: 3, amr: ':mod n))', sentence: 'The matter is a topic of national sovereignty and national security' },
             { id: 7, indentation: 1, amr: ':domain (p / policy-01))', sentence: 'The policy is a matter of national sovereignty and national security' }
         ], 
-        source: "Source: ::id PROXY_NYT_ENG_20040724_0084.28 (amr-release-3.0-amrs-test-proxy.txt)"
+        source: "Source: ::id PROXY_NYT_ENG_20040724_0084.28 (amr-release-3.0-amrs-test-proxy.txt)",
+        id: "::id PROXY_NYT_ENG_20040724_0084.28"
     },
     { 
         order: 13, 
@@ -228,7 +239,8 @@
             { id: 3, indentation: 2, amr: ':ARG0-of (h / have-org-role-91', sentence: 'A group consists of people who have an organizational role' },
             { id: 4, indentation: 3, amr: ':ARG2 (p2 / profession :quant 9))))', sentence: 'A group consists of people of nine professions' }
         ],
-        source: "Source: ::id bolt12_91455_5317.1 (amr-release-3.0-amrs-test-bolt.txt)"
+        source: "Source: ::id bolt12_91455_5317.1 (amr-release-3.0-amrs-test-bolt.txt)",
+        id: "::id bolt12_91455_5317.1"
     },
     { 
         order: 14, 
@@ -250,7 +262,8 @@
             { id: 6, indentation: 2, amr: ':name (n2 / name :op1 "Beijing"))', sentence: 'The Japanese delegation flies to Beijing' },
             { id: 7, indentation: 1, amr: ':time (d3 / date-entity :day 2))', sentence: 'The Japanese delegation flies to Beijing on the second day.' }
         ],
-        source: "Source: ::id nw.chtb_0318.12 (amr-release-3.0-amrs-test-xinhua.txt)"
+        source: "Source: ::id nw.chtb_0318.12 (amr-release-3.0-amrs-test-xinhua.txt)",
+        id: "::id nw.chtb_0318.12"
     },
     { 
         order: 15, 
@@ -272,7 +285,8 @@
             { id: 6, indentation: 2, amr: ':ARG0 (y / you)', sentence: 'Where is Homer Simpson when you need?' },
             { id: 7, indentation: 2, amr: ':ARG1 p))', sentence: 'Where is Homer Simpson when you need him?' }
         ],
-        source: "Source: ::id wb.eng_0003.13 (amr-release-3.0-amrs-test-consensus.txt)"
+        source: "Source: ::id wb.eng_0003.13 (amr-release-3.0-amrs-test-consensus.txt)",
+        id: "::id wb.eng_0003.13"
     },
     { 
         order: 16, 
@@ -292,7 +306,8 @@
             { id: 5, indentation: 2, amr: ':ARG2 (c / cook-01)', sentence: 'The thing that is possible is to apply this theory to cooking' },
             { id: 6, indentation: 2, amr: ':mod (a2 / also)))', sentence: 'The thing that is possible is to also apply this theory to cooking' },
         ],
-        source: "Source: ::id wb.c2e_0044.8 (amr-release-3.0-amrs-wb.txt)"
+        source: "Source: ::id wb.c2e_0044.8 (amr-release-3.0-amrs-wb.txt)",
+        id: "::id wb.c2e_0044.8"
     },
     { 
         order: 17, 
@@ -312,7 +327,8 @@
             { id: 5, indentation: 2, amr: ':ARG0 (a / amr-unknown))', sentence: 'Why is it hard to understand?' },
             { id: 6, indentation: 1, amr: ':degree (s / so))', sentence: 'Why is it so hard to understand?' }
         ],
-        source: "Source: ::id wb.eng_0003.62 (amr-release-3.0-amrs-test-consensus.txt)"
+        source: "Source: ::id wb.eng_0003.62 (amr-release-3.0-amrs-test-consensus.txt)",
+        id: "::id wb.eng_0003.62"
     },
     { 
         order: 18, 
@@ -339,7 +355,8 @@
             { id: 9, indentation: 3, amr: ':ARG0 y', sentence: 'Break your work into chunks that you manage' },
             { id: 10, indentation: 3, amr: ':ARG1-of (p / possible-01))))', sentence: 'Break your work into chunks that you can manage' }
         ],
-        source: "Source: ::id DF-200-192400-625_6304.20 (amr-release-3.0-amrs-test-dfa.txt)"
+        source: "Source: ::id DF-200-192400-625_6304.20 (amr-release-3.0-amrs-test-dfa.txt)",
+        id: "::id DF-200-192400-625_6304.20"
     },
     { 
         order: 19, 
@@ -357,7 +374,8 @@
             { id: 4, indentation: 2, amr: ':time (b / before', sentence: 'To expect to complete the acquisition before' },
             { id: 5, indentation: 3, amr: ':op1 (d / date-entity :month 4))))', sentence: 'To expect to complete the acquisition before April' }
         ],
-        source: "Source: ::id wb.c2e_0008.4 ::date 2012-11-16T09:33:54 (amr-release-3.0-amrs-wb.txt)"
+        source: "Source: ::id wb.c2e_0008.4 (amr-release-3.0-amrs-wb.txt)",
+        id: "::id wb.c2e_0008.4"
     },
     { 
         order: 20, 
@@ -383,7 +401,8 @@
             { id: 8, indentation: 3, amr: ':purpose (f / fundraise-04)))', sentence: 'To list lots of Austin efforts to relieve and fundraising events' },
             { id: 9, indentation: 1, amr: ':location (h / here))', sentence: 'Lots of Austin relief efforts and fundraising events listed here' }
         ],
-        source: "Source: ::id ENG_DF_000170_20050903_C00020J0V_0001.20 (amr-release-3.0-amrs-test-lorelei.txt)"
+        source: "Source: ::id ENG_DF_000170_20050903_C00020J0V_0001.20 (amr-release-3.0-amrs-test-lorelei.txt)",
+        id: "::id ENG_DF_000170_20050903_C00020J0V_0001.20"
     },
     { 
         order: 21, 
@@ -407,7 +426,8 @@
             { id: 7, indentation: 2, amr: ':op2 (h / happiness))', sentence: 'Such a big earthquake struck during a time of prosperity and happiness' },
             { id: 8, indentation: 1, amr: ':manner (s3 / sudden))', sentence: 'Such a big earthquake suddenly struck during a time of prosperity and happiness' }
         ],
-        source: "Source: ::id bolt12_10474_1831.1 (amr-release-3.0-amrs-bolt.txt)"
+        source: "Source: ::id bolt12_10474_1831.1 (amr-release-3.0-amrs-bolt.txt)",
+        id: "::id bolt12_10474_1831.1"
     },
     { 
         order: 22, 
@@ -434,7 +454,8 @@
             { id: 9, indentation: 5, amr: ':op1 (a3 / anything)', sentence: 'He can\'t seem to help himself from apologizing for anything and' },
             { id: 10, indentation: 5, amr: ':op2 (e / everything))))))', sentence: 'He can\'t seem to help himself from apologizing for anything and everthing' }
         ],
-        source: "Source: ::id DF-170-181103-888_2097.1 (amr-release-3.0-amrs-dfa.txt)"
+        source: "Source: ::id DF-170-181103-888_2097.1 (amr-release-3.0-amrs-dfa.txt)",
+        id: "::id DF-170-181103-888_2097.1"
     },
     { 
         order: 23, 
@@ -462,7 +483,8 @@
             { id: 9, indentation: 1, amr: ':location (r2 / region', sentence: 'In recent years, Finland has been keeping an obvious trade surplus in the region' },
             { id: 10, indentation: 2, amr: ':mod (t2 / this)))', sentence: 'In recent years, Finland has been keeping an obvious trade surplus in this region' }
         ],
-        source: "Source: ::id nw.chtb_0324.12 (amr-release-3.0-amrs-xinhua.txt)"
+        source: "Source: ::id nw.chtb_0324.12 (amr-release-3.0-amrs-xinhua.txt)",
+        id: "::id nw.chtb_0324.12"
     },
     { 
         order: 24, 
@@ -486,7 +508,8 @@
             { id: 8, indentation: 2, amr: ':ARG2 (c2 / cowardice', sentence: 'Tolerance is certainly not fear and not obligated to be cowardice' },
             { id: 9, indentation: 3, amr: ':domain (s / sincerity))))', sentence: 'Tolerance is certainly not fear and sincerity is not obligated to be cowardice' }
         ],
-        source: "Source: ::id bolt12_6455_6561.24 (amr-release-3.0-amrs-test-bolt.txt)"
+        source: "Source: ::id bolt12_6455_6561.24 (amr-release-3.0-amrs-test-bolt.txt)",
+        id: "::id bolt12_6455_6561.24"
     },
     { 
         order: 25, 
@@ -516,7 +539,8 @@
             { id: 10, indentation: 3, amr: ':ARG1 (c3 / compete-01', sentence: 'He felt that there were more new competitors participating in competition' },
             { id: 11, indentation: 4, amr: ':mod (t / this)))', sentence: 'He felt that there were more new competitors participating in this competition' }
         ],
-        source: "Source: ::id nw.chtb_0324.12 (amr-release-3.0-amrs-test-xinhua.txt)"
+        source: "Source: ::id nw.chtb_0324.12 (amr-release-3.0-amrs-test-xinhua.txt)",
+        id: "::id nw.chtb_0324.12"
     }
   ];
   

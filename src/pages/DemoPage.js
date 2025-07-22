@@ -129,7 +129,7 @@ const DemoPage = () => {
             </p>
             <p>Differences in indentation and variable names (concept labels) do not count as errors.</p>
             <p></p>
-            <p>Once you submit your annotation, review the answer, which is the gold AMR, and the explanation below it.</p>
+            <p>Once you submit your annotation, review the answer, which is the gold AMR, and the explanation and AMR breakdown below it. Feel free to resubmit your annotation with changes.</p>
             <h3>Write in PENMAN notation inside the text box.</h3>
 
             <div className="navigation-controls">

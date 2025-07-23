@@ -61,7 +61,7 @@ export default function InstructionsPage() {
           <Example number={2} title="She bought a house." penman={`(b / buy-01\n  :ARG0 (s / she)\n  :ARG1 (h / house))`} graph>
             <img src={firstgraph} width="250" height="150" />
               <p className="paragraphs">
-                  Since buying is the main point of the sentence, "buy-01" is the root. Notice that grammatical details such as punctuation, tense, plurality, and articles are ignored since they do not add much to our understanding of the sentence. Most prepositions are ignored as well, unless they add meaning. Demonstrative pronouns are kept (ie: "that") in AMRS.
+                  Since buying is the main point of the sentence, "buy-01" is the root. Notice that grammatical details such as punctuation, tense, plurality, and articles are ignored since they do not add much to our understanding of the sentence. Most prepositions are ignored as well, unless they add meaning. Demonstrative pronouns are kept (ie: "that") in AMRs.
               </p>
               <p className="paragaphs">
                   As you can see in the graph, buy-01 is the root. Instances are variables that represent concepts, such as "b" for "buy-01". As you can see, every concept is at the leaf of the graph. :ARG1 and :ARG0 show the relationship between the root "buy-01" to the entities "she" and "house".
@@ -104,11 +104,11 @@ export default function InstructionsPage() {
           </p>
           <Example number={5} title="A transcriber." penman={`(p / person\n  :ARG0-of (t / transcribe-01))`}>
             <p className="paragraphs">
-              Here we use <strong>:ARG0-of</strong>, which is the inverse form of :ARGO. This will be further explained later, but if we don't use the inverse, then we get a meaning closer to "The person transcribed" as expressed in the following:
+              Here we use <strong>:ARG0-of</strong>, which is the inverse form of :ARG0. This will be further explained later, but if we don't use the inverse, then we get a meaning closer to "The person transcribed" as expressed in the following:
             </p>
             <CodeBlock>{`(t / transcribe-01\n  :ARG0 (p / person))`}</CodeBlock>
           </Example>
-          <Example number={6} title="The lawyer's justification of the case." penman={`(j / justify-01\n  :ARGO (l / lawyer)\n  :ARG1 (c / case))`}>
+          <Example number={6} title="The lawyer's justification of the case." penman={`(j / justify-01\n  :ARG0 (l / lawyer)\n  :ARG1 (c / case))`}>
             <p className="paragraphs">This AMR can also be interpreted as "The lawyer justified the case," "The justification of the case by the lawyer", etc.</p>
           </Example>
           <p className="paragraphs">
@@ -133,16 +133,16 @@ export default function InstructionsPage() {
           <p className="paragaphs">Some common general relations are <strong>:domain, :location, :mod, :name</strong>, and <strong>:time</strong>.</p>
           <Example number={10} title="The dog is cute." penman={`(c / cute\n  :domain (d / dog))`} />
           <Example number={11} title="The beaver is at the river." penman={`(b / beaver\n  :location (r / river))`} />
-          <Example number={12} title="The tired student slept at dawn." penman={`(s / sleep-01\n  :ARGO (s2 / student\n    :mod (t / tired))\n  :time (d / dawn))`}>
+          <Example number={12} title="The tired student slept at dawn." penman={`(s / sleep-01\n  :ARG0 (s2 / student\n    :mod (t / tired))\n  :time (d / dawn))`}>
               <p className="paragaphs">The relation <strong>:mod</strong> is used to describe things, such as the quality of an object. The relation <strong>:domain</strong> serves as the inverse of :mod. Often, what comes after mod is a specific feature of the object. What comes after domain is the noun or what is being described. :domain is also used for copulas ("is"). :mod can also be used before demonstrative pronouns such as "this".</p>
           </Example>
           <Example number={13} title="This dress." penman={`(d / dress\n  :mod (t / this))`} />
           <p className="paragaphs">The next example shows the use of <strong>:quant</strong>, which is one way of representing quantity.</p>
-          <Example number={14} title="The staff prepared 13 servings." penman={`(p / prepare-01\n  :ARGO (s / staff)\n  :ARG1 (s2 / serving\n    :quant 13))`}>
+          <Example number={14} title="The staff prepared 13 servings." penman={`(p / prepare-01\n  :ARG0 (s / staff)\n  :ARG1 (s2 / serving\n    :quant 13))`}>
               <p className="paragaphs">The <strong>:quant</strong> relation is called a constant because the value it represents does not have a variable. Other constants exist as well, such as <strong>:name</strong> and <strong>:polarity</strong>.</p>
           </Example>
           <p className="paragaphs">There are multiple ways to show date relations, one of which is <strong>:year</strong>.</p>
-          <Example number={15} title="She graduated in 2022." penman={`(g / graduate-01\n  :ARGO (s / she)\n  :time (d / date-entity\n    :year 2022))`} />
+          <Example number={15} title="She graduated in 2022." penman={`(g / graduate-01\n  :ARG0 (s / she)\n  :time (d / date-entity\n    :year 2022))`} />
         
           <h3 className="subsection-title">Listing Entities</h3>
           <p className="paragaphs">We list ordered items with :opX (:op1, :op2, :op3, ...). Example use cases are listing grocery items or writing the first and last name of someone.</p>
@@ -152,21 +152,28 @@ export default function InstructionsPage() {
           </Example>
   
           <h3 className="subsection-title">Inverse Relations</h3>
-          <p className="paragaphs">Inverse relations provide a way to show passive structure, such as "the girl who ate" rather than "the girl ate." The focus is on the girl rather than the action of eating. Inverse relations can also be used for nominalizations ("the smiling face"), quantities, and relative pronouns. We use "-of" to represent the inverse of a relation.</p>
+          <p className="paragaphs">Inverse relations provide a way to show passive structure, such as "the girl who ate" rather than "the girl ate." The focus is on the girl rather than the action of eating. Inverse relations are also often used for nominalizations ("the smiling face"), quantities, and relative pronouns. We use "-of" to represent the inverse of a relation.</p>
+          <div className="example-block">
+            <p className="paragraphs">For example, the sentence "The butterfly that flew" would be represented using an inverse relation as seen in the following AMR:</p>
+            <CodeBlock>{`(b / butterfly\n  :ARG0-of (f / fly-01))`}</CodeBlock>
+            <p className="paragraphs">while the sentence "The butterfly flies" is shown as:</p>
+            <CodeBlock>{`(f / fly-01\n  :ARG0 (b / butterfly))`}</CodeBlock>
+          </div>
+          <p className="paragraphs">Here are some more examples of inverse relations being used.</p>
           <Example number={18} title="The book that sold." penman={`(b / book\n  :ARG1-of (s / sell-01))`} />
-          <Example number={19} title="The market where customers bartered." penman={`(m / market\n  :location-of (b / barter-01\n    :ARGO (c / customer)))`} />
+          <Example number={19} title="The market where customers bartered." penman={`(m / market\n  :location-of (b / barter-01\n    :ARG0 (c / customer)))`} />
   
           <h3 className="subsection-title">Negations</h3>
           <p className="paragaphs">We negate using <strong>:polarity -</strong>.</p>
-          <Example number={20} title="The bird did not fly." penman={`(f / fly-01\n  :ARGO (b / bird)\n  :polarity -)`} />
+          <Example number={20} title="The bird did not fly." penman={`(f / fly-01\n  :ARG0 (b / bird)\n  :polarity -)`} />
   
         </section>
   
         <section className="section">
           <h3 className="subheaders">Modals</h3>
           <p className="paragaphs">Modals are helping verbs that express ideas like possibility, ability, permission, and obligation (i.e.: "should", "could"). We use concepts to represent modals (more examples in the guidelines).</p>
-          <Example number={21} title="Max may not sled down the big hill." penman={`(p / permit-01\n  :ARG1 (s / sled-01\n    :ARGO (p / person\n      :name "Max")\n    :ARG2 (h / hill\n      :mod (b / big)))\n  :polarity -)`} />
-          <Example number={22} title="It's possible the cat does not climb tall trees." penman={`(p / possible-01\n  :ARG1 (c / climb-01\n    :ARGO (c2 / cat)\n    :ARG1 (t / tree\n      :mod (t2 / tall))\n    :polarity -))`} />
+          <Example number={21} title="Max may not sled down the big hill." penman={`(p / permit-01\n  :ARG1 (s / sled-01\n    :ARG0 (p / person\n      :name "Max")\n    :ARG2 (h / hill\n      :mod (b / big)))\n  :polarity -)`} />
+          <Example number={22} title="It's possible the cat does not climb tall trees." penman={`(p / possible-01\n  :ARG1 (c / climb-01\n    :ARG0 (c2 / cat)\n    :ARG1 (t / tree\n      :mod (t2 / tall))\n    :polarity -))`} />
         </section>
   
         <section className="section">
@@ -180,10 +187,11 @@ export default function InstructionsPage() {
             <li><strong>"How many"</strong> - :quant</li>
             <li><strong>"Whose"</strong> - :poss</li>
           </ul>
-          <Example number={23} title="Why did he turn around?" penman={`(t / turn-around-23\n  :ARGO (h / he)\n  :purpose (a / amr-unknown))`} />
-          <Example number={24} title="What movie did you watch?" penman={`(w / watch-01\n  :ARGO (y / you)\n  :ARG1 (a / amr-unknown\n    :ARG1-of (m / movie)))`} />
+          <Example number={23} title="Why did he turn around?" penman={`(t / turn-around-23\n  :ARG0 (h / he)\n  :purpose (a / amr-unknown))`} />
+          <Example number={24} title="What movie did you watch?" penman={`(w / watch-01\n  :ARG0 (y / you)\n  :ARG1 (a / amr-unknown\n    :ARG1-of (m / movie)))`} />
+          <p className="paragaphs">The concept "amr-unknown" is attached to :ARG1 because :ARG1 of watch-01 is the thing being watched (which is a movie).</p>
           <p className="paragaphs">Choice questions use the concept "amr-choice" and list the options with :opX. Yes-no questions use polarity (a / amr-unknown).</p>
-          <Example number={25} title="Does she like strawberries?" penman={`(l / like-01\n  :ARGO (s / she)\n  :ARG1 (s2 / strawberry)\n  :polarity (a / amr-unknown))`} />
+          <Example number={25} title="Does she like strawberries?" penman={`(l / like-01\n  :ARG0 (s / she)\n  :ARG1 (s2 / strawberry)\n  :polarity (a / amr-unknown))`} />
         </section>
   
         <section className="section">
@@ -196,18 +204,14 @@ export default function InstructionsPage() {
           <h2 className="subheaders">More Examples</h2>
           <p className="paragaphs">Here are some more examples for fun!</p>
           <Example number={27} title={`The American sitcom "The Golden Girls" had seven seasons.`} penman={`(s / sitcom\n  :name (n / name :op1 "The" :op2 "Golden" :op3 "Girls")\n  :mod (c / country\n    :wiki "United_States"\n    :name (n2 / name\n      :op1 "America"))\n  :domain (s2 / season\n    :quant 7))`} />
-          <Example number={28} title="The dog barked at the squirrel as it climbed up a tree." penman={`(b / bark-01\n  :ARGO (d / dog)\n  :ARG2 (s / squirrel)\n  :time (c / climb-01\n    :ARGO s\n    :ARG1 (t / tree)))`} />
-          <Example number={29} title="She could not believe that the stranger knew her." penman={`(p / possible-01\n  :ARG1 (b / believe-01\n    :ARGO (s / she)\n    :ARG1 (k / know-02\n      :ARGO (s2 / stranger)\n      :ARG1 s))\n  :polarity -)`} />
-          <Example number={30} title="The singer, who the friend I talked to yesterday likes a lot, announced she would be leaving the famous agency because of ongoing rumors." penman={`(a / announce-01\n  :ARGO (s / singer\n    :ARG1-of (l / like-01\n      :ARGO (f / friend\n        :ARG2-of (t / talk-01\n          :ARGO (i / i)\n          :time (y / yesterday)))\n      :quant (l2 / lot)))\n  :ARG1 (l3 / leave-15\n    :ARGO s\n    :ARG1 (a2 / agency\n      :mod (f2 / famous))\n    :ARG1-of (c / cause-01\n      :ARGO (g / go-on-15\n        :ARG1 (r / rumor)))))`} />
+          <Example number={28} title="The dog barked at the squirrel as it climbed up a tree." penman={`(b / bark-01\n  :ARG0 (d / dog)\n  :ARG2 (s / squirrel)\n  :time (c / climb-01\n    :ARG0 s\n    :ARG1 (t / tree)))`} />
+          <Example number={29} title="She could not believe that the stranger knew her." penman={`(p / possible-01\n  :ARG1 (b / believe-01\n    :ARG0 (s / she)\n    :ARG1 (k / know-02\n      :ARG0 (s2 / stranger)\n      :ARG1 s))\n  :polarity -)`} />
+          <Example number={30} title="The singer, who the friend I talked to yesterday likes a lot, announced she would be leaving the famous agency because of ongoing rumors." penman={`(a / announce-01\n  :ARG0 (s / singer\n    :ARG1-of (l / like-01\n      :ARG0 (f / friend\n        :ARG2-of (t / talk-01\n          :ARG0 (i / i)\n          :time (y / yesterday)))\n      :quant (l2 / lot)))\n  :ARG1 (l3 / leave-15\n    :ARG0 s\n    :ARG1 (a2 / agency\n      :mod (f2 / famous))\n    :ARG1-of (c / cause-01\n      :ARG0 (g / go-on-15\n        :ARG1 (r / rumor)))))`} />
         </section>
   
         <footer className="footer">
-          <p className="footer-text">Now you know how to create AMRs for basic sentences. Move on to the <Link to="/demo">demo page</Link> to practice.</p>
+          <p className="footer-text">Now you know how to create AMRs for basic sentences. Move on to the <Link to="/demo">demo page</Link> to practice (and don't forget to read the instructions at the top of the page!).</p>
         </footer>
       </div>
     );
   }
-  
-
-
-// export default InstructionPage;

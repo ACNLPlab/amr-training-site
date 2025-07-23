@@ -66,9 +66,11 @@ const AmrDiffViewer = ({ userInput, goldAMR }) => {
 
             // alphabetically sort roles for easier comparison
             const sortedUserTokens = sortSiblingRoles(userTokens);
+            const sortedGoldTokens = sortSiblingRoles(goldTokens);
+
 
             // initial diff result
-            const differences = diffArrays(goldTokens, sortedUserTokens);
+            const differences = diffArrays(sortedGoldTokens, sortedUserTokens);
 
             // post-processing (ie: variable names and structure switching)
             const processedDifferences = [];
@@ -206,6 +208,7 @@ function sortSiblingRoles(tokens) {
             <p><strong>How to Interpret the Analysis:</strong></p>
             <ul>
                 <li>Highlighted roles or variables do not always indicate an error.</li>
+                <li>(We're currently working on fixing, but the output may show a different ordering of roles than you inputted. However, it should still be marking semantic differences in the input.)</li>
                 <li><strong>Variable Names:</strong> Different variable names (i.e., <code>a</code> vs. <code>d</code>) are acceptable, as long as the same variable does not refer to different concepts.
                 The Analysis might mark a variable as incorrect if its associated concept was mismatched.</li>
                 <li><strong>Role Order:</strong> The order of roles at the same structural level (i.e., <code>:polarity</code> and <code>:ARG1</code>) does not matter.</li>

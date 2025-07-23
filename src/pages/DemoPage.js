@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './DemoPage.css';
 import { amrData } from '../components/amrData';
 import AmrDisplay from '../components/AmrDisplay';
@@ -92,28 +92,25 @@ const DemoPage = () => {
         setSaveStatus('');
     }
 
-    const resetNewSentence = () => {
+
+    useEffect(() => {
         setIsSubmitted(false);
         setUserInput('');
         setPrevAttempt(null);
         setSaveStatus('');
-    }
+    }, [currentIndex]);
 
     const handleNext = () => {
         if (currentIndex < amrData.length - 1) {
             setCurrentIndex(currentIndex + 1);
-            // reset state for the new sentence
-            setIsSubmitted(false);
-            setUserInput('');
+  
         }
     };
 
     const handlePrev = () => {
         if (currentIndex > 0) {
             setCurrentIndex(currentIndex - 1);
-            // reset state for the new sentence
-            setIsSubmitted(false);
-            setUserInput('');
+
         }
     };
 
@@ -127,7 +124,7 @@ const DemoPage = () => {
                 PropBank framesets
             </a> to complete your annotations. 
             </p>
-            <p>Differences in indentation and variable names (concept labels) do not count as errors.</p>
+            <p>Differences in indentation and variable names (concept labels) do not count as errors. Also, the tab key doesn't work, so use spaces instead.</p>
             <p></p>
             <p>Once you submit your annotation, review the answer, which is the gold AMR, and the explanation and AMR breakdown below it. Feel free to resubmit your annotation with changes.</p>
             <h3>Write in PENMAN notation inside the text box.</h3>

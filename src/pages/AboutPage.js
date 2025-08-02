@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     <div>
         <h1>More about the project</h1>
-            <p>This website trains users to make annotations.
+            <p>This website trains users to make annotations. The following resources were referenced for the content on the Instructions page.
             </p>
             
             <a href="https://aclanthology.org/W13-2322.pdf" target="_blank">

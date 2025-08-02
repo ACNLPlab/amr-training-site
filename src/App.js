@@ -16,10 +16,10 @@ function App() {
                 <Link to="/">Home</Link>
             </li>
             <li>
-                <Link to="/instructions">Instructions</Link>
+                <Link to="/instructions">Tutorial</Link>    {/*called instructions page in this code */}
             </li>
             <li>
-                <Link to="/demo">Demo</Link>
+                <Link to="/demo">Annotation Practice</Link>     {/*called demo page in this code */}
             </li>
             <li>
                 <Link to="/about">About</Link>

@@ -169,3 +169,61 @@
     color: #333;
     border: 1px solid #ddd;
 }
+
+
+/* buttons*/
+
+.retry-button {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100px;
+}
+
+.retry-button button{
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: white;
+    background-color: #ff9326;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.retry-button button:hover {
+    background-color: #e08b1b;
+}
+
+.answer-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.answer-controls button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.answer-controls button:hover {
+    background-color: #e0e0e0;
+}
+
+.gold-amr-content, .explanation-content {
+    margin-top: 15px;
+}
+
+.amr-display-wrapper h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+

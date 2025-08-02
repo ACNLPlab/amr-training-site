@@ -46,6 +46,13 @@ const DemoPage = () => {
     // const [isSubmittedInput, setIsSubmittedInput] = useState(false);
 
     const [saveStatus, setSaveStatus] = useState('');
+
+    // button for gold AMR and breakdown
+    const [showGoldAmr, setShowGoldAmr] = useState(false);
+    // button for gold AMR explanation
+    const [showExplanation, setShowExplanation] = useState(false);
+    // button for error highlighting analysis
+    const [showDiff, setShowDiff] = useState(false);
     
 
     const currentItem = amrData[currentIndex];
@@ -90,6 +97,10 @@ const DemoPage = () => {
         setPrevAttempt(userInput);
         setIsSubmitted(false);
         setSaveStatus('');
+
+        setShowGoldAmr(false);
+        setShowExplanation(false);
+        setShowDiff(false);
     }
 
 
@@ -98,6 +109,10 @@ const DemoPage = () => {
         setUserInput('');
         setPrevAttempt(null);
         setSaveStatus('');
+
+        setShowGoldAmr(false);
+        setShowExplanation(false);
+        setShowDiff(false);
     }, [currentIndex]);
 
     const handleNext = () => {
@@ -179,9 +194,9 @@ const DemoPage = () => {
 
                     
                     {isSubmitted && (
-                        <button className="retry-button" onClick={handleRetry}>
-                            Retry
-                        </button>
+                        <div className="retry-button" onClick={handleRetry}>
+                            <button>Retry</button>
+                        </div>
                     )}
 
                     
@@ -191,10 +206,31 @@ const DemoPage = () => {
                     <h2>Gold AMR</h2>
                     {isSubmitted ? (
                         <>
-                            <pre className="answer-display">{currentItem.goldAMR}</pre>
-                            <p className="source">{currentItem.source}</p>
-                            <p className="amr-explanation-heading">Explanation:</p>
-                            <FormattedExplanation text={currentItem.explanation} />
+                            <div className="answer-controls">
+                                <button onClick={() => setShowGoldAmr(!showGoldAmr)}>
+                                    {showGoldAmr ? 'Hide' : 'Show'} Gold AMR & AMR Breakdown
+                                </button>
+                                <button onClick={() => setShowExplanation(!showExplanation)}>
+                                    {showExplanation ? 'Hide' : 'Show'} Gold AMR Explanation
+                                </button>
+                                <button onClick={() => setShowDiff(!showDiff)}>
+                                    {showDiff ? 'Hide' : 'Show'} AMR Error Highlighting & Analysis
+                                </button>
+                            </div>
+
+                            {showGoldAmr && (
+                                <div className="gold-amr-content">
+                                    <pre className="answer-display">{currentItem.goldAMR}</pre>
+                                    <p className="source">{currentItem.source}</p>
+                                </div>
+                            )}
+                            {showExplanation && (
+                                <div className="explanation-content">
+                                    <p className="amr-explanation-heading">Explanation:</p>
+                                    <FormattedExplanation text={currentItem.explanation} />
+                                </div>
+                            )}
+
                         </>
                     ) : (
                         <div className="answer-placeholder">
@@ -203,16 +239,21 @@ const DemoPage = () => {
                     )}
                 </div>
             </div>
-            
+
             {isSubmitted && (
                 <div className="full-width-content">
-                    <AmrDiffViewer
-                        userInput={userInput}
-                        goldAMR={currentItem.goldAMR}
-                    />
-                    <div className="amr-display-wrapper">
-                        <AmrDisplay breakdownData={currentItem.breakdown} showLines={true} />
-                    </div>
+                    {showDiff && (
+                        <AmrDiffViewer
+                            userInput={userInput}
+                            goldAMR={currentItem.goldAMR}
+                        />
+                    )}
+                    {showGoldAmr && (
+                        <div className="amr-display-wrapper">
+                             <h3>Gold AMR Breakdown</h3>
+                            <AmrDisplay breakdownData={currentItem.breakdown} showLines={true} />
+                        </div>
+                    )}
                 </div>
             )}
         </div>

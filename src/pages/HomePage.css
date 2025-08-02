@@ -1,0 +1,11 @@
+.homepage {
+    text-align: center;
+}
+
+.samplegraph{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import './DemoPage.css';
 import { amrData } from '../components/amrData';
 import AmrDisplay from '../components/AmrDisplay';

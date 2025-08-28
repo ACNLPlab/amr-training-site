@@ -6,6 +6,225 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    margin-left: 3rem;
     text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 550;
+    line-height: 1.5;
+    font-size: 0.8rem;
+}
+
+.samplegraphlines {
+    line-height: 2;
+
+}
+
+.title-section {
+    height: 50vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+}
+
+.title-heading {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    font-weight: 800;
+    line-height: 0.5;
+    color:aliceblue; 
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+
+}
+
+.title-subtitle {
+    color: white;
+    font-size: clamp(1rem, 3vw, 1.75rem);
+    margin-top: 0.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.body{
+    padding: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    flex: 1;
+}
+
+.column {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 2rem;
+    margin-top: 1.5rem;
+    align-items: flex-start;
+    font-family: 'Segoe UI', Arial, sans-serif;
+
+}
+
+.section {
+    flex: 1;
+    min-width: 300px; 
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+
+    /* get rid of the default  */
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* sample AMR graph content */
+.content{
+    margin-left: 4rem;
+    text-align: left;
+    margin-top: 2rem;
+    color:rgb(77, 96, 96);
+}
+
+/* howto styling */
+.howto-list {
+  text-align: left;
+  margin: 1em auto;
+  max-width: 600px;
+  font-size: 1.1em;
+}
+
+.howto-list li {
+  margin-bottom: 0.5em;
+}
+
+.howto-header {
+  text-align: left;
+  margin-left: 3em;
+}
+
+/* example AMR graph highlighting */
+.amr-highlight {
+  background: #ffea989c;
+  color: #875100;
+  border-radius: 4px;
+  padding: 0 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.amr-highlight-var{
+  background: #ff8bfbdc;
+  color: #870085;
+  border-radius: 4px;
+  padding: 0 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+.amr-highlight-concept {
+  background: #ffea989c;
+  color: #875100;
+  border-radius: 4px;
+  padding: 0 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+.amr-highlight-role {
+  background: #62efe8b1;
+  color: #0e598a;
+  border-radius: 4px;
+  padding: 0 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.amr-highlight:hover {
+  background: #ffd23f;
+}
+
+.amr-highlight-var:hover {
+  background: #d26be1;
+}
+.amr-highlight-concept:hover {
+  background: #ffd23f;
+}
+.amr-highlight-role:hover {
+  background: #3ea7ec;
+}
+
+.amr-highlight[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: 120%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.95em;
+  z-index: 10;
+  opacity: 1;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.amr-highlight-var[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: 120%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.95em;
+  z-index: 10;
+  opacity: 1;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.amr-highlight-concept[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: 120%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.95em;
+  z-index: 10;
+  opacity: 1;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.amr-highlight-role[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: 120%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.95em;
+  z-index: 10;
+  opacity: 1;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }

@@ -26,11 +26,11 @@
 }
 
 .legend-item .removed {
-    background-color: #ffdce0;
+    background-color: #d4ecff;
 }
 
 .legend-item .added {
-    background-color: #d4ecff;
+    background-color: #ffdce0;
 }
 
 .diff-output-pre {
@@ -49,14 +49,14 @@
 }
 
 .diff-removed {
-    background-color: #ffdce0;
-    color: #c00;
+    background-color: #d4ecff;
+    color: #005f99;
     font-weight: bold;
 }
 
 .diff-added {
-    background-color: #d4ecff;
-    color: #005f99;
+    background-color: #ffdce0;
+    color: #c00;
     font-style: italic;
     text-decoration: line-through;
     font-weight: bold;

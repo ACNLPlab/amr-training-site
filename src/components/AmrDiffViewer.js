@@ -185,11 +185,11 @@ function sortSiblingRoles(tokens) {
             <h3>Analysis</h3>
             <div className="diff-legend">
                         <span className="legend-item">
-                            <span className="box removed"></span> Things you missed (in red and bold)
+                            <span className="box removed"></span> Things you missed (in blue and bold)
                         </span>
                         <p></p>
                         <span className="legend-item">
-                            <span className="box added"></span> Things you added (in blue and italics)
+                            <span className="box added"></span> Things you added (in red and italics)
                         </span>
             </div>
             <pre className="diff-output-pre">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './DemoPage.css';
 import { amrData } from '../components/amrData';
 import AmrDisplay from '../components/AmrDisplay';
@@ -28,6 +28,16 @@ const FormattedExplanation = ({ text }) => {
     );
 };
 
+// fisher yates algorithm for shuffling randomly
+const shuffleArray = (array) => {
+    const shuffled = [...array];    // copy to new array
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+};
+
 const DemoPage = () => {
     // managing the state because need user input
     // what sentence on
@@ -35,7 +45,21 @@ const DemoPage = () => {
     // user input
     const [userInput, setUserInput] = useState('');
 
-    // add user input to txt file
+
+    // order of sentences in order
+    const [displayOrder, setDisplayOrder] = useState(
+        () => amrData.map((_, index) => index)  // first arg is unused
+    );
+    
+    // ordered or random mode -- set default to random
+    const [orderMode, setOrderMode] = useState('random');
+
+    // shuffle when orderMode is random
+    useEffect(() => {
+        if (orderMode === 'random') {
+            handleSetRandom();
+        }
+    }, []); 
     
 
     // check for user input submission
@@ -53,21 +77,66 @@ const DemoPage = () => {
     const [showExplanation, setShowExplanation] = useState(false);
     // button for error highlighting analysis
     const [showDiff, setShowDiff] = useState(false);
-    
 
-    const currentItem = amrData[currentIndex];
+    // const currentItem = amrData[currentIndex];
+
+
+    // making the tab key work:
+    const textareaRef = useRef(null);
+    const tab_size = 4;
+    const TAB_CHAR = ' '.repeat(tab_size);
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Tab') {
+            event.preventDefault(); // let tab key input 4 spaces, rather than move around page
+
+            const { selectionStart, selectionEnd } = event.currentTarget;
+
+            // update userInput state -- replace selection with tab or input tab character
+            setUserInput(currentUserInput => {
+                const newValue =
+                    currentUserInput.substring(0, selectionStart) +
+                    TAB_CHAR +
+                    currentUserInput.substring(selectionEnd);
+
+                // update cursor position to be after the tab character
+                setTimeout(() => {
+                    if (textareaRef.current) {
+                        const newCursorPosition = selectionStart + TAB_CHAR.length;
+                        textareaRef.current.selectionStart = newCursorPosition;
+                        textareaRef.current.selectionEnd = newCursorPosition;
+                    }
+                }, 0);
+
+                return newValue;
+            });
+        }
+    };
+
+
+    // memoizing current item
+    const currentItem = useMemo(() => {
+        if (displayOrder.length > 0) {
+            return amrData[displayOrder[currentIndex]];
+        }
+        return null;
+    }, [currentIndex, displayOrder]);
+
 
     const handleInputChange = (event) => {
         setUserInput(event.target.value);
     };
 
-    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwg8veS9l98N9YU3lNf5eHWIJlYXV0XGslC9qBN6drHDy0unK7Jts1R7adFGN-aMFFU/exec';
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPCM38rkStdU5dBNId39f2u6CYomP1CkMImsHzF_olTWZtprYCQeJpy8xEIN4Ngx8P/exec';
 
     // save user input to file
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsSubmitted(true);
         setSaveStatus('Saving...');
+
+        // get user ID
+        const userId = localStorage.getItem('amrAnnotatorId');
 
         try{
             await fetch(GOOGLE_APP_SCRIPT_URL, {
@@ -78,7 +147,10 @@ const DemoPage = () => {
                 },
                 body: JSON.stringify({
                     sentenceId: currentItem.id,
+                    sentenceNum: currentItem.order,
                     sentence: currentItem.sentence,
+                    goldAMR: currentItem.goldAMR,
+                    userId: userId,
                     userInput: userInput
                 }),
             });
@@ -129,6 +201,24 @@ const DemoPage = () => {
         }
     };
 
+    // changing sentence order
+    const handleSetOrdered = () => {
+        setOrderMode('ordered');
+        setDisplayOrder(amrData.map((_, index) => index));
+        setCurrentIndex(0);
+    };
+
+    const handleSetRandom = () => {
+        setOrderMode('random');
+        setDisplayOrder(shuffleArray(amrData.map((_, index) => index)));
+        setCurrentIndex(0);
+    };
+
+    // when rendering before current item is available
+    if (!currentItem) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="demo-page-container">
             <h1>AMR Annotation Practice</h1>
@@ -143,6 +233,23 @@ const DemoPage = () => {
             <p></p>
             <p>Once you submit your annotation, review the answer, which is the gold AMR, and the explanation and AMR breakdown below it. Feel free to resubmit your annotation with changes.</p>
             <h3>Write in PENMAN notation inside the text box.</h3>
+
+            <div className="order-controls">
+                <button 
+                    onClick={handleSetOrdered}
+                    className={orderMode === 'ordered' ? 'active' : ''}
+                    title="Show sentences in order (simple to more complicated)"
+                >
+                    In Order
+                </button>
+                <button 
+                    onClick={handleSetRandom}
+                    className={orderMode === 'random' ? 'active' : ''}
+                    title="Shuffle the order of the sentences"
+                >
+                    Randomize
+                </button>
+            </div>
 
             <div className="navigation-controls">
                 <button 
@@ -180,6 +287,8 @@ const DemoPage = () => {
                     <h2>Your Annotation</h2>
                     <form onSubmit={handleSubmit}>
                         <textarea
+                        ref={textareaRef}   // for tab key
+                        onKeyDown={handleKeyDown}   //for tab key
                         className="amr-textarea"
                         value={userInput}
                         onChange={handleInputChange}

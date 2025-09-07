@@ -132,7 +132,7 @@ const DemoPage = () => {
                 const newValue =
                     currentUserInput.substring(0, selectionStart) +
                     TAB_CHAR +
-                    currentVal.substring(selectionEnd);
+                    currentValue.substring(selectionEnd);
 
                 // update cursor position to be after the tab character
                 setTimeout(() => {
@@ -184,7 +184,7 @@ const DemoPage = () => {
     // save user input to file
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setIsSubmitted(true);
+        setSubmittedStates(prev => ({...prev, [currentItem.id]: true}));
         setSaveStatus('Saving...');
 
         // get user ID
@@ -232,7 +232,7 @@ const DemoPage = () => {
 
 
     useEffect(() => {
-        setIsSubmitted(false);
+        // setIsSubmitted(false);
         setPrevAttempt(null);
         setSaveStatus('');
 

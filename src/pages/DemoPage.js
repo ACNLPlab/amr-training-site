@@ -64,7 +64,8 @@ const DemoPage = () => {
     
 
     // check for user input submission
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    // const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submittedStates, setSubmittedStates] = useState({});
 
     const [prevAttempt, setPrevAttempt] = useState(null);
 
@@ -108,6 +109,10 @@ const DemoPage = () => {
         localStorage.setItem('trainmr_userInputs', JSON.stringify(userInputs));
     }, [userInputs]);
 
+    useEffect(() => {
+        localStorage.setItem('trainmr_submittedStates', JSON.stringify(submittedStates));
+    }, [submittedStates]);
+
 
     // making the tab key work:
     const textareaRef = useRef(null);
@@ -121,11 +126,13 @@ const DemoPage = () => {
             const { selectionStart, selectionEnd } = event.currentTarget;
 
             // update userInput state -- replace selection with tab or input tab character
-            setUserInputs(currentUserInput => {
+            // setUserInput(currentUserInput => {
+            setUserInputs(prevInputs => {
+                const currentValue = prevInputs[currentItem.id] || '';
                 const newValue =
                     currentUserInput.substring(0, selectionStart) +
                     TAB_CHAR +
-                    currentUserInput.substring(selectionEnd);
+                    currentVal.substring(selectionEnd);
 
                 // update cursor position to be after the tab character
                 setTimeout(() => {
@@ -136,7 +143,8 @@ const DemoPage = () => {
                     }
                 }, 0);
 
-                return newValue;
+                // return newValue;
+                return {...prevInputs, [currentItem.id]: newValue};
             });
         }
     };
@@ -159,6 +167,7 @@ const DemoPage = () => {
     }, [currentIndex, displayOrder]);
 
     const currentUserInput = currentItem ? userInputs[currentItem.id] || '' : '';
+    const isCurrItemSubmitted = currentItem ? !!submittedStates[currentItem.id] : false;
 
 
     // const handleInputChange = (event) => {
@@ -212,7 +221,8 @@ const DemoPage = () => {
     const handleRetry = () => {
         // setPrevAttempt(userInput);
         setPrevAttempt(currentUserInput);
-        setIsSubmitted(false);
+        // setIsSubmitted(false);
+        setSubmittedStates(prev => ({...prev, [currentItem.id]: false}))
         setSaveStatus('');
 
         setShowGoldAmr(false);
@@ -223,7 +233,6 @@ const DemoPage = () => {
 
     useEffect(() => {
         setIsSubmitted(false);
-        setUserInputs('');
         setPrevAttempt(null);
         setSaveStatus('');
 
@@ -358,16 +367,16 @@ const DemoPage = () => {
                         value={currentUserInput}
                         onChange={handleInputChange}
                         placeholder="Type your AMR annotation here..."
-                        readOnly={isSubmitted}
+                        readOnly={isCurrItemSubmitted}
                     />
                         <button type="submit" className="submit-button">
                             Submit
                         </button>
-                        {isSubmitted && saveStatus && <p className='save-status'>{saveStatus}</p>}
+                        {isCurrItemSubmitted && saveStatus && <p className='save-status'>{saveStatus}</p>}
                     </form>
 
                     
-                    {isSubmitted && (
+                    {isCurrItemSubmitted && (
                         <div className="retry-button" onClick={handleRetry}>
                             <button>Retry</button>
                         </div>
@@ -378,7 +387,7 @@ const DemoPage = () => {
 
                 <div className="demo-column answer-column">
                     <h2>Gold AMR</h2>
-                    {isSubmitted ? (
+                    {isCurrItemSubmitted ? (
                         <>
                             <div className="answer-controls">
                                 <button onClick={() => setShowGoldAmr(!showGoldAmr)}>
@@ -414,7 +423,7 @@ const DemoPage = () => {
                 </div>
             </div>
 
-            {isSubmitted && (
+            {isCurrItemSubmitted && (
                 <div className="full-width-content">
                     {showDiff && (
                         <AmrDiffViewer

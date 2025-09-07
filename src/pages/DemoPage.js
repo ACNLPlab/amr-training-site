@@ -43,7 +43,8 @@ const DemoPage = () => {
     // what sentence on
     const [currentIndex, setCurrentIndex] = useState(0); 
     // user input
-    const [userInput, setUserInput] = useState('');
+    // const [userInput, setUserInput] = useState('');
+    const [userInputs, setUserInputs] = useState({});
 
 
     // order of sentences in order
@@ -80,6 +81,33 @@ const DemoPage = () => {
 
     // const currentItem = amrData[currentIndex];
 
+    // local storage to save user input and index
+    useEffect(() => {
+        try {
+            const savedOrder = localStorage.getItem('trainmr_displayOrder');
+            const savedIndex = localStorage.getItem('trainmr_currentIndex');
+            const savedInputs = localStorage.getItem('trainmr_userInputs');
+            const savedMode = localStorage.getItem('trainmr_orderMode');
+            if (savedOrder) setDisplayOrder(JSON.parse(savedOrder));
+            if (savedIndex) setCurrentIndex(JSON.parse(savedIndex));
+            if (savedInputs) setUserInputs(JSON.parse(savedInputs));
+            if (savedMode) setOrderMode(JSON.parse(savedMode));
+        } catch (error) {
+            console.error("Failed to parse from localStorage", error);
+            localStorage.clear();
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('trainmr_displayOrder', JSON.stringify(displayOrder));
+        localStorage.setItem('trainmr_currentIndex', JSON.stringify(currentIndex));
+        localStorage.setItem('trainmr_orderMode', JSON.stringify(orderMode));
+    }, [displayOrder, currentIndex, orderMode]);
+
+    useEffect(() => {
+        localStorage.setItem('trainmr_userInputs', JSON.stringify(userInputs));
+    }, [userInputs]);
+
 
     // making the tab key work:
     const textareaRef = useRef(null);
@@ -114,17 +142,32 @@ const DemoPage = () => {
     };
 
 
+    // // memoizing current item
+    // const currentItem = useMemo(() => {
+    //     if (displayOrder.length > 0) {
+    //         return amrData[displayOrder[currentIndex]];
+    //     }
+    //     return null;
+    // }, [currentIndex, displayOrder]);
+
     // memoizing current item
     const currentItem = useMemo(() => {
-        if (displayOrder.length > 0) {
+        if (displayOrder && displayOrder.length > currentIndex) {
             return amrData[displayOrder[currentIndex]];
         }
         return null;
     }, [currentIndex, displayOrder]);
 
+    const currentUserInput = currentItem ? userInputs[currentItem.id] || '' : '';
+
+
+    // const handleInputChange = (event) => {
+    //     setUserInput(event.target.value);
+    // };
 
     const handleInputChange = (event) => {
-        setUserInput(event.target.value);
+        const {value} = event.target;
+        setUserInput(prevInputs => ({...prevInputs, [currentItem.id]: value}));
     };
 
     const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPCM38rkStdU5dBNId39f2u6CYomP1CkMImsHzF_olTWZtprYCQeJpy8xEIN4Ngx8P/exec';
@@ -151,7 +194,8 @@ const DemoPage = () => {
                     sentence: currentItem.sentence,
                     goldAMR: currentItem.goldAMR,
                     userId: userId,
-                    userInput: userInput
+                    // userInput: userInput
+                    userInput: currentUserInput
                 }),
             });
 
@@ -166,7 +210,8 @@ const DemoPage = () => {
 
 
     const handleRetry = () => {
-        setPrevAttempt(userInput);
+        // setPrevAttempt(userInput);
+        setPrevAttempt(currentUserInput);
         setIsSubmitted(false);
         setSaveStatus('');
 
@@ -185,7 +230,8 @@ const DemoPage = () => {
         setShowGoldAmr(false);
         setShowExplanation(false);
         setShowDiff(true);
-    }, [currentIndex]);
+    // }, [currentIndex]);
+    }, [currentIndex, displayOrder]);
 
     const handleNext = () => {
         if (currentIndex < amrData.length - 1) {
@@ -308,7 +354,8 @@ const DemoPage = () => {
                         ref={textareaRef}   // for tab key
                         onKeyDown={handleKeyDown}   //for tab key
                         className="amr-textarea"
-                        value={userInput}
+                        // value={userInput}
+                        value={currentUserInput}
                         onChange={handleInputChange}
                         placeholder="Type your AMR annotation here..."
                         readOnly={isSubmitted}
@@ -371,7 +418,8 @@ const DemoPage = () => {
                 <div className="full-width-content">
                     {showDiff && (
                         <AmrDiffViewer
-                            userInput={userInput}
+                            // userInput={userInput}
+                            userInput={currentUserInput}
                             goldAMR={currentItem.goldAMR}
                         />
                     )}

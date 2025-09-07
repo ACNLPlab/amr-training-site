@@ -121,7 +121,7 @@ const DemoPage = () => {
             const { selectionStart, selectionEnd } = event.currentTarget;
 
             // update userInput state -- replace selection with tab or input tab character
-            setUserInput(currentUserInput => {
+            setUserInputs(currentUserInput => {
                 const newValue =
                     currentUserInput.substring(0, selectionStart) +
                     TAB_CHAR +
@@ -167,7 +167,7 @@ const DemoPage = () => {
 
     const handleInputChange = (event) => {
         const {value} = event.target;
-        setUserInput(prevInputs => ({...prevInputs, [currentItem.id]: value}));
+        setUserInputs(prevInputs => ({...prevInputs, [currentItem.id]: value}));
     };
 
     const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPCM38rkStdU5dBNId39f2u6CYomP1CkMImsHzF_olTWZtprYCQeJpy8xEIN4Ngx8P/exec';
@@ -223,7 +223,7 @@ const DemoPage = () => {
 
     useEffect(() => {
         setIsSubmitted(false);
-        setUserInput('');
+        setUserInputs('');
         setPrevAttempt(null);
         setSaveStatus('');
 

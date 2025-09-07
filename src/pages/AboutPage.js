@@ -8,7 +8,7 @@ const AboutPage = () => {
             </p>
             
             <a href="https://aclanthology.org/W13-2322.pdf" target="_blank">
-                Link to AMR article
+                Link to AMR paper
             </a>
             <p></p>
             <a href="https://github.com/amrisi/amr-guidelines/blob/master/amr.md" target="_blank">

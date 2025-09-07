@@ -108,7 +108,7 @@ const AmrDiffViewer = ({ userInput, goldAMR }) => {
         } catch (err) {
             // parsing failed, inform user with the error message.
             setDiffData([]);
-            setError('Invalid AMR Syntax. Please check for missing or added parentheses (hint: make sure all open parentheses get closed), proper single forward slash "/" between variables and concepts, or other incorrect structure.');
+            setError('Invalid AMR Syntax. Please check for missing or added parentheses (hint: make sure all open parentheses get closed), proper single forward slash "/" between variables and concepts, spaces after roles, or other incorrect structure.');
             console.error("AMR Parsing Error:", err);
         }
 

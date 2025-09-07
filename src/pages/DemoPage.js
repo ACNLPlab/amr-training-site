@@ -76,7 +76,7 @@ const DemoPage = () => {
     // button for gold AMR explanation
     const [showExplanation, setShowExplanation] = useState(false);
     // button for error highlighting analysis
-    const [showDiff, setShowDiff] = useState(false);
+    const [showDiff, setShowDiff] = useState(true);
 
     // const currentItem = amrData[currentIndex];
 
@@ -184,7 +184,7 @@ const DemoPage = () => {
 
         setShowGoldAmr(false);
         setShowExplanation(false);
-        setShowDiff(false);
+        setShowDiff(true);
     }, [currentIndex]);
 
     const handleNext = () => {
@@ -221,18 +221,36 @@ const DemoPage = () => {
 
     return (
         <div className="demo-page-container">
-            <h1>AMR Annotation Practice</h1>
-            <p>Sentences and gold annotations are referenced from the AMR 3.0 dataset. Go to the About page to learn more.
-                Refer to the <a href="https://github.com/amrisi/amr-guidelines/blob/master/amr.md" target="_blank" rel="noopener noreferrer">
-                AMR guidelines
-            </a> and <a href="https://propbank.github.io/v3.4.0/frames/" target="_blank" rel="noopener noreferrer">
-                PropBank framesets
-            </a> to complete your annotations. 
-            </p>
-            <p>Differences in indentation and variable names (concept labels) do not count as errors. Also, the tab key doesn't work, so use spaces instead.</p>
-            <p></p>
-            <p>Once you submit your annotation, review the answer, which is the gold AMR, and the explanation and AMR breakdown below it. Feel free to resubmit your annotation with changes.</p>
-            <h3>Write in PENMAN notation inside the text box.</h3>
+            <div className="top-content">
+                <h1>AMR Annotation Practice</h1>
+                <p className="minitext">Sentences and gold annotations are referenced from the AMR 3.0 dataset. Go to the About page to learn more.</p>
+                <p><strong>Refer to the <a href="https://github.com/amrisi/amr-guidelines/blob/master/amr.md" target="_blank" rel="noopener noreferrer">
+                    AMR guidelines
+                </a> and <a href="https://propbank.github.io/v3.4.0/frames/" target="_blank" rel="noopener noreferrer">
+                    PropBank framesets
+                </a> to complete your annotations.</strong>
+                </p>
+                <div className="column">
+                    <div className="section left">
+                        <p><strong>View Options</strong></p>
+                        <p>Once you submit your annotation, you have several choices to review the answer:</p>
+                        <div className="centered-paragraph">
+                            (1) You can view the gold AMR and its line-by-line breakdown below it.<br />
+                            (2) You can view an explanation of the gold AMR<br />
+                            (3) You can view any differences between your annotation and the gold AMR (on by default)<br />
+                        </div>
+                        <p>There is also an option to view sentences in order of complexity/length, or to randomize them. The default is randomized.</p>
+                    </div>
+                    <div className="section right">
+                        <p><strong>Tips</strong></p>
+                        <p>Differences in indentation and variable names (concept labels) do not count as errors.</p>
+                        <p>However, remember to close all open parentheses and avoid duplicate variable names.</p>
+                    </div>
+                </div>
+                <p>Feel free to resubmit your annotation with changes.</p>
+                <p></p>
+                <h3>Write in PENMAN notation inside the text box.</h3>
+            </div>
 
             <div className="order-controls">
                 <button 

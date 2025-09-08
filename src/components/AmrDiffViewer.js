@@ -207,11 +207,8 @@ function sortSiblingRoles(tokens) {
             <div className="diff-interpretation-note">
             <p><strong>How to Interpret the Analysis:</strong></p>
             <ul>
-                <li>Highlighted roles or variables do not always indicate an error.</li>
-                <li>(We're currently working on fixing, but the output may show a different ordering of roles than you inputted. However, it should still be marking semantic differences in the input.)</li>
-                <li><strong>Variable Names:</strong> Different variable names (i.e., <code>a</code> vs. <code>d</code>) are acceptable, as long as the same variable does not refer to different concepts.
-                The Analysis might mark a variable as incorrect if its associated concept was mismatched.</li>
-                <li><strong>Role Order:</strong> The order of roles at the same structural level (i.e., <code>:polarity</code> and <code>:ARG1</code>) does not matter.</li>
+                <li><strong>Note on Variable Names:</strong> Different variable names (i.e., <code>a</code> vs. <code>d</code>) are acceptable, as long as the same variable does not refer to different concepts. The Analysis might mark a variable as incorrect if its associated concept was mismatched.</li>
+                <li><strong>Note on Role Order:</strong> The order of roles at the same structural level (i.e., <code>:polarity</code> and <code>:ARG1</code>) does not matter. This tool standardizes both your input and the gold AMR before comparing them. This means the output may be in a different order than what you wrote. This is not an error. Remember that the order of roles like <code>:ARG0</code> and <code>:ARG1</code> at the same level does not change the meaning of the graph.</li>
                 <li>Focus on differences in <strong>concepts</strong> (i.e., <code>live-01</code> vs <code>live-02</code>) and major <strong>structural connections</strong> (i.e., incorrect argument usage, different hierarchical structure).</li>
             </ul>
             </div>

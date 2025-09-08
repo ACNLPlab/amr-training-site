@@ -185,6 +185,7 @@ const DemoPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setSubmittedStates(prev => ({...prev, [currentItem.id]: true}));
+        setShowDiff(true);
         setSaveStatus('Saving...');
 
         // get user ID
@@ -218,7 +219,7 @@ const DemoPage = () => {
     };
 
 
-    const handleRetry = () => {
+    const handleRetry = () => { // hides things for the retry
         // setPrevAttempt(userInput);
         setPrevAttempt(currentUserInput);
         // setIsSubmitted(false);

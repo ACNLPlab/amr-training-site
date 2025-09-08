@@ -27,11 +27,25 @@ const AmrDiffViewer = ({ userInput, goldAMR }) => {
           
             const userGraph = penman.decode(userInput);
             const goldGraph = penman.decode(goldAMR);
+
+            // check for leftover text (see if there are multiple graphs)
+            const reEncodedUserGraphString = penman.encode(userGraph);
+            // normalize both strings
+            const normalizedUserInput = userInput.replace(/\s+/g, '');
+            const normalizedReEncodedString = reEncodedUserGraphString.replace(/\s+/g, '');
+ 
+            // check for a single root node in the user's graph (ie: (a / a) (b / b) is invalid)
+            if (normalizedUserInput.length > normalizedReEncodedString.length) {
+                setError('Invalid AMR Structure: An AMR must be a single, connected graph with only one root node. Your input appears to have multiple graphs. (Perhaps check your parentheses)');
+                setDiffData([]);
+                return;
+            }
+
             const canonicalGoldString = penman.encode(goldGraph);
             const goldTokens = tokenize(canonicalGoldString);
             
             const canonicalUserString = penman.encode(userGraph);
-            const userTokens = tokenize(canonicalUserString);
+            const userTokens = tokenize(reEncodedUserGraphString);
 
             // for mapping variables to concepts
             const extractVarToConceptMap = (tokens) => {

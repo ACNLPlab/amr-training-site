@@ -28,24 +28,11 @@ const AmrDiffViewer = ({ userInput, goldAMR }) => {
             const userGraph = penman.decode(userInput);
             const goldGraph = penman.decode(goldAMR);
 
-            // check for leftover text (see if there are multiple graphs)
-            const reEncodedUserGraphString = penman.encode(userGraph);
-            // normalize both strings
-            const normalizedUserInput = userInput.replace(/\s+/g, '');
-            const normalizedReEncodedString = reEncodedUserGraphString.replace(/\s+/g, '');
- 
-            // check for a single root node in the user's graph (ie: (a / a) (b / b) is invalid)
-            if (normalizedUserInput.length > normalizedReEncodedString.length) {
-                setError('Invalid AMR Structure: An AMR must be a single, connected graph with only one root node. Your input appears to have multiple graphs. (Perhaps check your parentheses)');
-                setDiffData([]);
-                return;
-            }
-
             const canonicalGoldString = penman.encode(goldGraph);
             const goldTokens = tokenize(canonicalGoldString);
             
             const canonicalUserString = penman.encode(userGraph);
-            const userTokens = tokenize(reEncodedUserGraphString);
+            const userTokens = tokenize(canonicalUserString);
 
             // for mapping variables to concepts
             const extractVarToConceptMap = (tokens) => {
@@ -122,7 +109,7 @@ const AmrDiffViewer = ({ userInput, goldAMR }) => {
         } catch (err) {
             // parsing failed, inform user with the error message.
             setDiffData([]);
-            setError('Invalid AMR Syntax. Please check for missing or added parentheses (hint: make sure all open parentheses get closed), proper single forward slash "/" between variables and concepts, spaces after roles, or other incorrect structure.');
+            setError('Invalid AMR Syntax. Please check for missing or added parentheses (hint: make sure all open parentheses get closed, and be careful about closing the whole graph with a parenthesis prematurely), proper single forward slash "/" between variables and concepts, spaces after roles, or other incorrect structure. Additionally, make sure variable names are unique for different concepts, and that variables are present when referring to a concept.');
             console.error("AMR Parsing Error:", err);
         }
 
@@ -223,6 +210,7 @@ function sortSiblingRoles(tokens) {
             <ul>
                 <li><strong>Note on Variable Names:</strong> Different variable names (i.e., <code>a</code> vs. <code>d</code>) are acceptable, as long as the same variable does not refer to different concepts. The Analysis might mark a variable as incorrect if its associated concept was mismatched.</li>
                 <li><strong>Note on Role Order:</strong> The order of roles at the same structural level (i.e., <code>:polarity</code> and <code>:ARG1</code>) does not matter. This tool standardizes both your input and the gold AMR before comparing them. This means the output may be in a different order than what you wrote. This is not an error. Remember that the order of roles like <code>:ARG0</code> and <code>:ARG1</code> at the same level does not change the meaning of the graph.</li>
+		        <li>Also if your input contains multiple separate graphs, only the first one will be evaluated.</li>
                 <li>Focus on differences in <strong>concepts</strong> (i.e., <code>live-01</code> vs <code>live-02</code>) and major <strong>structural connections</strong> (i.e., incorrect argument usage, different hierarchical structure).</li>
             </ul>
             </div>

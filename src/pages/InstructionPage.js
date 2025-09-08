@@ -64,7 +64,7 @@ export default function InstructionsPage() {
                   Since buying is the main point of the sentence, "buy-01" is the root. Notice that grammatical details such as punctuation, tense, plurality, and articles are ignored since they do not add much to our understanding of the sentence. Most prepositions are ignored as well, unless they add meaning. Demonstrative pronouns are kept (ie: "that") in AMRs.
               </p>
               <p className="paragaphs">
-                  As you can see in the graph, buy-01 is the root. Instances are variables that represent concepts, such as "b" for "buy-01". As you can see, every concept is at the leaf of the graph. :ARG1 and :ARG0 show the relationship between the root "buy-01" to the entities "she" and "house".
+                  As you can see in the graph, buy-01 is the root. Instances are variables that represent concepts, such as "b" for "buy-01". As you can see, every concept is at the leaf of the graph. :ARG1 and :ARG0 show the relationship between the root "buy-01" to the entities "she" and "house". Also note the placement of the open and closed parentheses.
               </p>
           </Example>
            <p className="paragaphs">
@@ -73,7 +73,7 @@ export default function InstructionsPage() {
           <Example number={3} title="The boy called his dog." penman={`(c / call-02\n  :ARG0 (b / boy)\n  :ARG1 (d / dog\n    :poss b))`} />
           <Example number={4} title="The child plans to find a star." penman={`(p / plan-01\n  :ARG0 (c / child)\n  :ARG1 (f / find-01\n    :ARG0 c\n    :ARG1 (s / star)))`} graph>
             <img src={secondgraph} width="300" height="250" />
-               <p className="paragraphs">Notice that in the graph, one concept has multiple edges pointing to it. This is called reentrancy, which is further explained in the official documentation.</p>
+               <p className="paragraphs">Notice that in the graph, one concept has multiple edges pointing to it. This is called reentrancy, which is further explained in the official documentation. In PENMAN notation, this can appear as a concept label being reused, such as the "c" for "child". However, we want to make sure that we use different concept labels for different concepts. So if there was a sentence "The child plans to find a cool star", then the concept labels for "child" and "cool" would have to be different (i.e.: c / child, c1 / cool).</p>
           </Example>
         </section>
   
@@ -162,18 +162,20 @@ export default function InstructionsPage() {
           <p className="paragraphs">Here are some more examples of inverse relations being used.</p>
           <Example number={18} title="The book that sold." penman={`(b / book\n  :ARG1-of (s / sell-01))`} />
           <Example number={19} title="The market where customers bartered." penman={`(m / market\n  :location-of (b / barter-01\n    :ARG0 (c / customer)))`} />
+          <Example number={20} title="The book that I wrote." penman={`(b / book\n  :ARG1-of (w / write-01\n  :ARG0 (i / i)))`} />
+
   
           <h3 className="subsection-title">Negations</h3>
           <p className="paragaphs">We negate using <strong>:polarity -</strong>.</p>
-          <Example number={20} title="The bird did not fly." penman={`(f / fly-01\n  :ARG0 (b / bird)\n  :polarity -)`} />
+          <Example number={21} title="The bird did not fly." penman={`(f / fly-01\n  :ARG0 (b / bird)\n  :polarity -)`} />
   
         </section>
   
         <section className="section">
           <h3 className="subheaders">Modals</h3>
           <p className="paragaphs">Modals are helping verbs that express ideas like possibility, ability, permission, and obligation (i.e.: "should", "could"). We use concepts to represent modals (more examples in the guidelines).</p>
-          <Example number={21} title="Max may not sled down the big hill." penman={`(p / permit-01\n  :ARG1 (s / sled-01\n    :ARG0 (p / person\n      :name "Max")\n    :ARG2 (h / hill\n      :mod (b / big)))\n  :polarity -)`} />
-          <Example number={22} title="It's possible the cat does not climb tall trees." penman={`(p / possible-01\n  :ARG1 (c / climb-01\n    :ARG0 (c2 / cat)\n    :ARG1 (t / tree\n      :mod (t2 / tall))\n    :polarity -))`} />
+          <Example number={22} title="Max may not sled down the big hill." penman={`(p / permit-01\n  :ARG1 (s / sled-01\n    :ARG0 (p / person\n      :name "Max")\n    :ARG2 (h / hill\n      :mod (b / big)))\n  :polarity -)`} />
+          <Example number={23} title="It's possible the cat does not climb tall trees." penman={`(p / possible-01\n  :ARG1 (c / climb-01\n    :ARG0 (c2 / cat)\n    :ARG1 (t / tree\n      :mod (t2 / tall))\n    :polarity -))`} />
         </section>
   
         <section className="section">
@@ -187,26 +189,26 @@ export default function InstructionsPage() {
             <li><strong>"How many"</strong> - :quant</li>
             <li><strong>"Whose"</strong> - :poss</li>
           </ul>
-          <Example number={23} title="Why did he turn around?" penman={`(t / turn-around-23\n  :ARG0 (h / he)\n  :purpose (a / amr-unknown))`} />
-          <Example number={24} title="What movie did you watch?" penman={`(w / watch-01\n  :ARG0 (y / you)\n  :ARG1 (a / amr-unknown\n    :ARG1-of (m / movie)))`} />
+          <Example number={24} title="Why did he turn around?" penman={`(t / turn-around-23\n  :ARG0 (h / he)\n  :purpose (a / amr-unknown))`} />
+          <Example number={25} title="What movie did you watch?" penman={`(w / watch-01\n  :ARG0 (y / you)\n  :ARG1 (a / amr-unknown\n    :ARG1-of (m / movie)))`} />
           <p className="paragaphs">The concept "amr-unknown" is attached to :ARG1 because :ARG1 of watch-01 is the thing being watched (which is a movie).</p>
           <p className="paragaphs">Choice questions use the concept "amr-choice" and list the options with :opX. Yes-no questions use polarity (a / amr-unknown).</p>
-          <Example number={25} title="Does she like strawberries?" penman={`(l / like-01\n  :ARG0 (s / she)\n  :ARG1 (s2 / strawberry)\n  :polarity (a / amr-unknown))`} />
+          <Example number={26} title="Does she like strawberries?" penman={`(l / like-01\n  :ARG0 (s / she)\n  :ARG1 (s2 / strawberry)\n  :polarity (a / amr-unknown))`} />
         </section>
   
         <section className="section">
           <h2 className="subheaders">Reifications</h2>
           <p className="paragaphs">Reifications are used to make a relation into a concept or to modify relations. There is a list of reifications in the AMR guidelines.</p>
-          <Example number={26} title="The neighbor was not at the house." penman={`(b / be-located-at-91\n  :ARG1 (n / neighbor)\n  :ARG2 (h / house)\n  :polarity -)`} />
+          <Example number={27} title="The neighbor was not at the house." penman={`(b / be-located-at-91\n  :ARG1 (n / neighbor)\n  :ARG2 (h / house)\n  :polarity -)`} />
         </section>
   
         <section className="section">
           <h2 className="subheaders">More Examples</h2>
           <p className="paragaphs">Here are some more examples for fun!</p>
-          <Example number={27} title={`The American sitcom "The Golden Girls" had seven seasons.`} penman={`(s / sitcom\n  :name (n / name :op1 "The" :op2 "Golden" :op3 "Girls")\n  :mod (c / country\n    :wiki "United_States"\n    :name (n2 / name\n      :op1 "America"))\n  :domain (s2 / season\n    :quant 7))`} />
-          <Example number={28} title="The dog barked at the squirrel as it climbed up a tree." penman={`(b / bark-01\n  :ARG0 (d / dog)\n  :ARG2 (s / squirrel)\n  :time (c / climb-01\n    :ARG0 s\n    :ARG1 (t / tree)))`} />
-          <Example number={29} title="She could not believe that the stranger knew her." penman={`(p / possible-01\n  :ARG1 (b / believe-01\n    :ARG0 (s / she)\n    :ARG1 (k / know-02\n      :ARG0 (s2 / stranger)\n      :ARG1 s))\n  :polarity -)`} />
-          <Example number={30} title="The singer, who the friend I talked to yesterday likes a lot, announced she would be leaving the famous agency because of ongoing rumors." penman={`(a / announce-01\n  :ARG0 (s / singer\n    :ARG1-of (l / like-01\n      :ARG0 (f / friend\n        :ARG2-of (t / talk-01\n          :ARG0 (i / i)\n          :time (y / yesterday)))\n      :quant (l2 / lot)))\n  :ARG1 (l3 / leave-15\n    :ARG0 s\n    :ARG1 (a2 / agency\n      :mod (f2 / famous))\n    :ARG1-of (c / cause-01\n      :ARG0 (g / go-on-15\n        :ARG1 (r / rumor)))))`} />
+          <Example number={28} title={`The American sitcom "The Golden Girls" had seven seasons.`} penman={`(s / sitcom\n  :name (n / name :op1 "The" :op2 "Golden" :op3 "Girls")\n  :mod (c / country\n    :wiki "United_States"\n    :name (n2 / name\n      :op1 "America"))\n  :domain (s2 / season\n    :quant 7))`} />
+          <Example number={29} title="The dog barked at the squirrel as it climbed up a tree." penman={`(b / bark-01\n  :ARG0 (d / dog)\n  :ARG2 (s / squirrel)\n  :time (c / climb-01\n    :ARG0 s\n    :ARG1 (t / tree)))`} />
+          <Example number={30} title="She could not believe that the stranger knew her." penman={`(p / possible-01\n  :ARG1 (b / believe-01\n    :ARG0 (s / she)\n    :ARG1 (k / know-02\n      :ARG0 (s2 / stranger)\n      :ARG1 s))\n  :polarity -)`} />
+          <Example number={31} title="The singer, who the friend I talked to yesterday likes a lot, announced she would be leaving the famous agency because of ongoing rumors." penman={`(a / announce-01\n  :ARG0 (s / singer\n    :ARG1-of (l / like-01\n      :ARG0 (f / friend\n        :ARG2-of (t / talk-01\n          :ARG0 (i / i)\n          :time (y / yesterday)))\n      :quant (l2 / lot)))\n  :ARG1 (l3 / leave-15\n    :ARG0 s\n    :ARG1 (a2 / agency\n      :mod (f2 / famous))\n    :ARG1-of (c / cause-01\n      :ARG0 (g / go-on-15\n        :ARG1 (r / rumor)))))`} />
         </section>
   
         <footer className="footer">

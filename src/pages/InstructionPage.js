@@ -93,7 +93,7 @@ export default function InstructionsPage() {
           <p className="paragraphs">
           There are more details and example sentences for each frame in the PropBank GitHub. Here's a snapshot of what you can see in the Searchable Frame Files:
           </p>
-          <img src={propbank} width="530" height="350" alt="Image of searchable PropBank Framesets website, showing 'buy.01'." />
+          <img src={propbank} width="530" height="350" alt="Searchable PropBank Framesets website, showing 'buy.01'." />
         </section>
   
         {/* Nouns and Adjectives Section */}

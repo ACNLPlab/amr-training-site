@@ -60,7 +60,7 @@ const DemoPage = () => {
         if (orderMode === 'random') {
             handleSetRandom();
         }
-    }, []); 
+    }, [orderMode]); 
     
 
     // check for user input submission

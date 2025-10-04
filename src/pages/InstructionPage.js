@@ -59,7 +59,7 @@ export default function InstructionsPage() {
             <p className="paragraphs">Here, "house" is the root and a concept.</p>
           </Example>
           <Example number={2} title="She bought a house." penman={`(b / buy-01\n  :ARG0 (s / she)\n  :ARG1 (h / house))`} graph>
-            <img src={firstgraph} width="250" height="150" />
+            <img src={firstgraph} width="250" height="150" alt="AMR graph of the sentence 'She bought a house.'" />
               <p className="paragraphs">
                   Since buying is the main point of the sentence, "buy-01" is the root. Notice that grammatical details such as punctuation, tense, plurality, and articles are ignored since they do not add much to our understanding of the sentence. Most prepositions are ignored as well, unless they add meaning. Demonstrative pronouns are kept (ie: "that") in AMRs.
               </p>
@@ -72,7 +72,7 @@ export default function InstructionsPage() {
           </p>
           <Example number={3} title="The boy called his dog." penman={`(c / call-02\n  :ARG0 (b / boy)\n  :ARG1 (d / dog\n    :poss b))`} />
           <Example number={4} title="The child plans to find a star." penman={`(p / plan-01\n  :ARG0 (c / child)\n  :ARG1 (f / find-01\n    :ARG0 c\n    :ARG1 (s / star)))`} graph>
-            <img src={secondgraph} width="300" height="250" />
+            <img src={secondgraph} width="300" height="250" alt="AMR graph of the sentence 'The child plans to find a star.'" />
                <p className="paragraphs">Notice that in the graph, one concept has multiple edges pointing to it. This is called reentrancy, which is further explained in the official documentation. In PENMAN notation, this can appear as a concept label being reused, such as the "c" for "child". However, we want to make sure that we use different concept labels for different concepts. So if there was a sentence "The child plans to find a cool star", then the concept labels for "child" and "cool" would have to be different (i.e.: c / child, c1 / cool).</p>
           </Example>
         </section>
@@ -93,7 +93,7 @@ export default function InstructionsPage() {
           <p className="paragraphs">
           There are more details and example sentences for each frame in the PropBank GitHub. Here's a snapshot of what you can see in the Searchable Frame Files:
           </p>
-          <img src={propbank} width="530" height="350" />
+          <img src={propbank} width="530" height="350" alt="Image of searchable PropBank Framesets website, showing 'buy.01'." />
         </section>
   
         {/* Nouns and Adjectives Section */}

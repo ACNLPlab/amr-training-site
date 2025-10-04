@@ -1,6 +1,6 @@
 import React from 'react';
 import "./HomePage.css";
-import homebg from '../assets/homepageimg.png';
+import homebg from '../assets/trainmrhomebg.png';
 
 const HomePage = () => {
 
